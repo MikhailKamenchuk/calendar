@@ -1,0 +1,64 @@
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+
+    &__body {
+        display: flex;
+        overflow: auto;
+        padding-top: 20px;
+
+    };
+    &__header {
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+        padding-left: 60px;
+    };
+    &__day-label {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        height: 100%;
+        align-items: center;
+    };
+    &__day-name {
+        font-size: 14px;
+        text-transform: uppercase;
+    };
+    &__day-number {
+        font-size: 30px;
+        margin-top: 10px;
+    };
+    &__week {
+        display: flex;
+        flex-grow: 1;
+    };
+    &__day {
+        flex: 1;
+        border-left: 1px solid #ccc;
+    };
+    &__hour {
+        height: 60px;
+        border-bottom: 1px solid #eee;
+    };
+}
+
+
+/* Part #2 */
+
+.sidebar {
+    width: 60px;
+    height: 100%;
+    &__time-slot {
+        height: 60px;
+        text-align: right;
+    };
+    &__time {
+        font-size: 10px;
+        position: relative;
+        top: -15px;
+        margin-right: 5px;
+    }
+}
