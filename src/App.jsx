@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Header from './Header';
-import Week from './Week';
-import Sidebar from './Sidebar';
+import Header from './Header/Header';
+import Week from './Week/Week';
+import Sidebar from './Sidebar/Sidebar';
 
 
 const App = () => {

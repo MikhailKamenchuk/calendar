@@ -1,5 +1,5 @@
 import React from 'react';
-import Day from './Day'
+import Day from '../Day/Day'
 const Week = () => {
   return (
     <div className="calendar__week">
