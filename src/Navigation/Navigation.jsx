@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import moment from 'moment'
+import moment from 'moment';
+import { getWeekStartDay } from '../utils/getWeekStartDay'
 
-const getWeekStartDay = (currentWeek) => {
-  const lastMondayByCurrentDate = moment().day(currentWeek * 7 + 1);
-  return lastMondayByCurrentDate
-}
-
-const Navigation = () => {
-  const [currentWeek, setCurrentWeek] = useState(0);
+const Navigation = ({setCurrentWeek, currentWeek}) => {
 
   const weekStartDay = getWeekStartDay(currentWeek);
   const weekEndDay = moment(weekStartDay).day(7);

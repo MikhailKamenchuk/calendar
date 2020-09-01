@@ -2,44 +2,17 @@ import React, { useState } from 'react';
 import Header from './Header/Header';
 import Week from './Week/Week';
 import Sidebar from './Sidebar/Sidebar';
+import CalendarWeekHeader from './CalendarWeekHeader/CalendarWeekHeader';
 
 
 const App = () => {
+  const [currentWeek, setCurrentWeek] = useState(0);
 
   return (
     <>
-      <Header></Header>
+      <Header setCurrentWeek={setCurrentWeek} currentWeek={currentWeek}></Header>
       <main className="calendar">
-        <header className="calendar__header">
-          <div className="calendar__day-label">
-            <span className="calendar__day-name">Mon</span>
-            <span className="calendar__day-number">27</span>
-          </div>
-          <div className="calendar__day-label">
-            <span className="calendar__day-name">Mon</span>
-            <span className="calendar__day-number">27</span>
-          </div>
-          <div className="calendar__day-label">
-            <span className="calendar__day-name">Mon</span>
-            <span className="calendar__day-number">27</span>
-          </div>
-          <div className="calendar__day-label">
-            <span className="calendar__day-name">Mon</span>
-            <span className="calendar__day-number">27</span>
-          </div>
-          <div className="calendar__day-label">
-            <span className="calendar__day-name">Mon</span>
-            <span className="calendar__day-number">27</span>
-          </div>
-          <div className="calendar__day-label">
-            <span className="calendar__day-name">Mon</span>
-            <span className="calendar__day-number">27</span>
-          </div>
-          <div className="calendar__day-label">
-            <span className="calendar__day-name">Mon</span>
-            <span className="calendar__day-number">27</span>
-          </div>
-        </header>
+        <CalendarWeekHeader currentWeek={currentWeek}/>
         <div className="calendar__body">
           <Sidebar />
           <Week />
