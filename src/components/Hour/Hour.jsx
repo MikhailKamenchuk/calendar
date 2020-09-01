@@ -1,10 +1,11 @@
 import React from 'react';
 import Event from '../Event/Event';
+import './hour.scss';
 
-const Hour = ({event}) => {
+const Hour = ({hour, currentDay, eventData}) => {
   return (
     <div className="calendar__hour">
-      {event ? <Event /> : null}
+      {eventData ? <Event eventData={eventData}/> : null}
     </div>
   )
 }

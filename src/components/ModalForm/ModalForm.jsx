@@ -1,4 +1,5 @@
 import React from 'react';
+import './modalForm.scss';
 
 const ModalForm = () => {
   return (

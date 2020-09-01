@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import { getWeekStartDay } from '../utils/getWeekStartDay'
+import { getWeekStartDay } from '../../utils'
+import './navigation.scss';
 
 const Navigation = ({setCurrentWeek, currentWeek}) => {
 

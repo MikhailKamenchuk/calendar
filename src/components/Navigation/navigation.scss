@@ -1,0 +1,15 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  &__today-btn {
+      margin-left: 20px;
+      padding: 5px 15px;
+  }
+
+  &__icon-btn {
+      margin-left: 20px;
+      background-color: transparent;
+      outline: none;
+      border: none;
+  }
+}

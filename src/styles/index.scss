@@ -1,18 +1,47 @@
-@import './common.scss';
-@import './variables.scss';
-@import './header.scss';
-@import './calendar.scss';
-@import './create-event.scss';
-@import './event.scss';
-
 * {
     box-sizing: border-box;
 }
 
 body {
     font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
+button {
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
 
+.modal {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__content {
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+    }
+}
+.overlay {
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(206, 201, 201, 0.711);
+}
 
+.hidden {
+    display: none;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 96px);
+    width: 100%;
+}

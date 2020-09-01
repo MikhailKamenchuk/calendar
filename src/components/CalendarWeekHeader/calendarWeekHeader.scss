@@ -1,0 +1,24 @@
+.calendar{
+   &__header {
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+        padding-left: 60px;
+        padding-right: 20px;
+    };
+    &__day-label {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        height: 100%;
+        align-items: center;
+    };
+    &__day-name {
+        font-size: 14px;
+        text-transform: uppercase;
+    };
+    &__day-number {
+        font-size: 30px;
+        margin-top: 10px;
+    };
+}
