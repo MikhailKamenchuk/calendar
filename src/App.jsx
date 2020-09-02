@@ -27,13 +27,16 @@ const App = () => {
       />
       <main className="calendar">
         <CalendarWeekHeader currentWeek={currentWeek} />
-        <Week events={events} currentWeek={currentWeek} fetchEvents={fetchEvents}/>
+        <Week
+          events={events}
+          currentWeek={currentWeek}
+          fetchEvents={fetchEvents}
+        />
       </main>
       <ModalForm
         isVisibleModal={isVisibleModal}
         toggleVisibleModal={toggleVisibleModal}
         fetchEvents={fetchEvents}
-        events={events}
       />
     </>
   )
