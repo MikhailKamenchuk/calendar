@@ -13,6 +13,15 @@ button {
     cursor: pointer;
     border: 1px solid #ccc;
 }
+.close-btn {
+    transform: rotate(45deg);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+    font-size: 30px;
+}
 
 .modal {
     position: fixed;

@@ -1,12 +1,11 @@
 import React from 'react';
 import moment from 'moment';
-
 import Sidebar from '../Sidebar/Sidebar';
 import Day from '../Day/Day';
 import { generateWeek } from '../../utils';
 import './week.scss';
 
-const Week = ({ events, currentWeek }) => {
+const Week = ({ events, currentWeek, fetchEvents }) => {
   const week = generateWeek(currentWeek);
 
   const getEventsInCurrentDay = day => events.filter(({ dateStart }) =>
@@ -17,7 +16,7 @@ const Week = ({ events, currentWeek }) => {
       <Sidebar />
       <div className="calendar__week">
         {week.map((day, idx) =>
-          <Day key={idx} eventsInCurrentDay={getEventsInCurrentDay(day)} currentDay={day} />
+          <Day key={idx} eventsInCurrentDay={getEventsInCurrentDay(day)} currentDay={day} fetchEvents={fetchEvents}/>
         )}
       </div>
     </div>

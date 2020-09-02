@@ -1,16 +1,6 @@
 .create-event {
     display: flex;
     flex-direction: column;
-    
-    &__close-btn {
-        transform: rotate(45deg);
-        background-color: transparent;
-        outline: none;
-        border: none;
-        cursor: pointer;
-        align-self: flex-end;
-        font-size: 30px;
-    }
 
     &__field {
         border: 0;
