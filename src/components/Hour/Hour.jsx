@@ -3,7 +3,13 @@ import moment from 'moment';
 import Event from '../Event/Event';
 import './hour.scss';
 
-const Hour = ({ hour, currentDay, eventData, fetchEvents }) => {
+const Hour = ({ 
+  hour, 
+  currentDay, 
+  eventData, 
+  fetchEvents, 
+  onChangeEvent 
+}) => {
   const [minutes, setMinutes] = useState(moment().format('mm'))
 
   useEffect(() => {
@@ -15,7 +21,12 @@ const Hour = ({ hour, currentDay, eventData, fetchEvents }) => {
 
   return (
     <div className="calendar__hour">
-      {eventData ? <Event eventData={eventData} fetchEvents={fetchEvents} /> : null}
+      {eventData
+        ? <Event
+          eventData={eventData}
+          fetchEvents={fetchEvents}
+          onChangeEvent={onChangeEvent}/>
+        : null}
       {moment(currentDay).hour(hour).format('DD MM YYYY HH') === moment().format('DD MM YYYY HH')
         ? <div className='calendar__hour__red-line' style={{ top: `${minutes}px` }}></div>
         : null

@@ -28,7 +28,11 @@ const EvetTooltip = ({ id, fetchEvents, toggleVisibleTooltip }) => {
   )
 }
 
-const Event = ({ fetchEvents, eventData }) => {
+const Event = ({
+  fetchEvents,
+  eventData,
+  onChangeEvent
+}) => {
   const [visibleTooltip, toggleVisibleTooltip] = useState(false);
 
   const { id, title, description, dateStart, dateEnd } = eventData;
@@ -37,14 +41,16 @@ const Event = ({ fetchEvents, eventData }) => {
   const to = moment(dateEnd).format('HH:mm');
 
   return (
-    <div className="event"  >
+    <div className="event" >
       <button
         className='event__close-btn close-btn'
         onClick={() => toggleVisibleTooltip(!visibleTooltip)}
       >+</button>
-      <div className="event__title">{title}</div>
-      <div className="event__time">{`${from} - ${to}`}</div>
-      <div className='event__description'>{description}</div>
+      <div className='event__content' onClick={() => onChangeEvent(id)}>
+        <div className="event__title">{title}</div>
+        <div className="event__time">{`${from} - ${to}`}</div>
+        <div className='event__description'>{description}</div>
+      </div>
       {visibleTooltip &&
         <EvetTooltip
           id={id}

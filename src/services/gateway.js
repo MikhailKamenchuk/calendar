@@ -8,6 +8,14 @@ const getEventsList = () => fetch(baseUrl)
     throw new Error("Internal Server Error. Can't display events")
   });
 
+const getEvent = eventId => fetch(`${baseUrl}/${eventId}`)
+  .then(res => {
+    if (res.ok) {
+      return res.json()
+    }
+    throw new Error("Internal Server Error. Can't display events")
+  });
+
 const createEvent = eventData => fetch(baseUrl, {
   method: 'POST',
   headers: {
@@ -42,6 +50,7 @@ const deleteEvent = eventId => fetch(`${baseUrl}/${eventId}`, {
 
 export {
   getEventsList,
+  getEvent,
   createEvent,
   updateEvent,
   deleteEvent

@@ -3,7 +3,12 @@ import moment from 'moment';
 import Hour from '../Hour/Hour';
 import './day.scss';
 
-const Day = ({ currentDay, eventsInCurrentDay, fetchEvents }) => {
+const Day = ({ 
+  currentDay, 
+  eventsInCurrentDay, 
+  fetchEvents, 
+  onChangeEvent
+}) => {
   
   const getEventByTime = hour => eventsInCurrentDay.find(({ dateStart }) => {
     return moment(dateStart).format("HH") == hour
@@ -18,6 +23,7 @@ const Day = ({ currentDay, eventsInCurrentDay, fetchEvents }) => {
           currentDay={currentDay}
           eventData={getEventByTime(hour)}
           fetchEvents={fetchEvents}
+          onChangeEvent={onChangeEvent}
         />
       ))}
     </div>
