@@ -28,7 +28,8 @@ const App = () => {
 
   const reset = () => {
     toggleVisibleModal(false);
-    setTargetModalForm('create')
+    setTargetModalForm('create');
+    setIdOfTheEventToCahnge(null)
   }
 
   return (

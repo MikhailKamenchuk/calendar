@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types'; 
 import Hour from '../Hour/Hour';
 import './day.scss';
 
@@ -28,6 +29,13 @@ const Day = ({
       ))}
     </div>
   )
+}
+
+Day.propTypes = {
+  currentDay: PropTypes.object.isRequired, 
+  eventsInCurrentDay: PropTypes.array.isRequired, 
+  fetchEvents: PropTypes.func.isRequired, 
+  onChangeEvent: PropTypes.func.isRequired,
 }
 
 export default Day

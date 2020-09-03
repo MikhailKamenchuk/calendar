@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types'; 
 import Sidebar from '../Sidebar/Sidebar';
 import Day from '../Day/Day';
 import { generateWeek } from '../../utils';
@@ -31,6 +32,12 @@ const Week = ({
       </div>
     </div>
   )
+}
+Week.propTypes = {
+  events: PropTypes.array.isRequired, 
+  currentWeek: PropTypes.number.isRequired, 
+  fetchEvents: PropTypes.func.isRequired, 
+  onChangeEvent: PropTypes.func.isRequired
 }
 
 export default Week

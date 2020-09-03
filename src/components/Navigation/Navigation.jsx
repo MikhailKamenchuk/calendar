@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types'; 
 import { getWeekStartDay } from '../../utils'
 import './navigation.scss';
 
@@ -29,6 +30,11 @@ const Navigation = ({setCurrentWeek, currentWeek}) => {
       </span>
     </div>
   )
+}
+
+Navigation.propTypes = {
+  setCurrentWeek: PropTypes.func.isRequired, 
+  currentWeek: PropTypes.number.isRequired,
 }
 
 export default Navigation

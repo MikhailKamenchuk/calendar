@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types'; 
 import { generateWeek } from '../../utils';
 import './calendarWeekHeader.scss';
 
@@ -29,6 +30,10 @@ const CalendarWeekHeader = ({ currentWeek }) => {
       )}
     </header>
   )
+}
+
+CalendarWeekHeader.propTypes = {
+  currentWeek: PropTypes.number.isRequired
 }
 
 export default CalendarWeekHeader

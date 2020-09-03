@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { destructureDataForServer, destructureDataForRender } from '../../utils';
 import { createEvent, getEvent, updateEvent } from '../../services/gateway';
 import './modalForm.scss';
@@ -26,10 +27,9 @@ class ModalForm extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.idOfTheEventToCahnge !== prevProps.idOfTheEventToCahnge) {
-      getEvent(this.props.idOfTheEventToCahnge)
-        .then(data => this.setState({ formData: destructureDataForRender(data) }))
-        .catch(error => alert(error));
+    if (this.props.idOfTheEventToCahnge !== prevProps.idOfTheEventToCahnge
+          && this.props.idOfTheEventToCahnge) {
+      this.fetchEvent(this.props.idOfTheEventToCahnge);
     }
   }
 
@@ -41,6 +41,7 @@ class ModalForm extends React.Component {
   fetchEvent = id => getEvent(id)
     .then(data => this.setState({ formData: destructureDataForRender(data) }))
     .catch(error => alert(error));
+
 
   handleChangeFormInput = e => {
     const { name, value } = e.target;
@@ -136,8 +137,8 @@ class ModalForm extends React.Component {
               />
               {this.props.targetModalForm === 'update'
                 ? <button
-                    className="create-event__submit-btn"
-                    onClick={this.handleChangeEvent}>Update</button>
+                  className="create-event__submit-btn"
+                  onClick={this.handleChangeEvent}>Update</button>
                 : <button className="create-event__submit-btn" type='submit'>Save</button>
               }
             </form>
@@ -146,6 +147,18 @@ class ModalForm extends React.Component {
       </div>
     )
   }
+}
+
+ModalForm.propTypes = {
+  isVisibleModal: PropTypes.bool.isRequired,
+  reset: PropTypes.func.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
+  idOfTheEventToCahnge: PropTypes.string,
+  targetModalForm: PropTypes.string.isRequired,
+}
+
+ModalForm.defaultProps = {
+  idOfTheEventToCahnge: '',
 }
 
 export default ModalForm

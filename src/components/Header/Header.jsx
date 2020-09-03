@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'; 
 import Navigation from '../Navigation/Navigation'
 import './header.scss';
 
@@ -26,6 +27,12 @@ const Header = ({
       <Navigation setCurrentWeek={setCurrentWeek} currentWeek={currentWeek} />
     </header>
   )
+}
+
+Header.propTypes = {
+  setCurrentWeek: PropTypes.func.isRequired,
+  currentWeek: PropTypes.number.isRequired,
+  toggleVisibleModal: PropTypes.func.isRequired,
 }
 
 export default Header

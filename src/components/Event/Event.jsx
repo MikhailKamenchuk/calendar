@@ -1,32 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import moment from 'moment';
-import { deleteEvent } from '../../services/gateway'
+import PropTypes from 'prop-types'; 
+import EvetTooltip from './EventTooltip';
 import './event.scss';
-
-const EvetTooltip = ({ id, fetchEvents, toggleVisibleTooltip }) => {
-  useEffect(() => {
-    const deleteEventHandler = () => {
-      deleteEvent(id)
-        .then(() => fetchEvents())
-        .catch(error => alert(error))
-    }
-
-    const eventDelEl = document.querySelector('.event__delete-tooltip');
-    eventDelEl.addEventListener('click', deleteEventHandler);
-
-    return () => eventDelEl.removeEventListener('click', deleteEventHandler);
-
-  });
-
-  return (
-    <div
-      className="event__delete-tooltip"
-      onMouseOut={() => toggleVisibleTooltip(false)}
-    >
-      Delete
-    </div>
-  )
-}
 
 const Event = ({
   fetchEvents,
@@ -60,5 +36,12 @@ const Event = ({
     </div>
   )
 }
+
+Event.propTypes = {
+  fetchEvents: PropTypes.func.isRequired,
+  eventData: PropTypes.object.isRequired,
+  onChangeEvent: PropTypes.func.isRequired,
+}
+
 
 export default Event
