@@ -10,7 +10,9 @@ const Week = ({
   events, 
   currentWeek, 
   fetchEvents, 
-  onChangeEvent
+  onChangeEvent,
+  setNewEventData,
+  toggleVisibleModal
 }) => {
   const week = generateWeek(currentWeek);
 
@@ -27,6 +29,8 @@ const Week = ({
             eventsInCurrentDay={getEventsInCurrentDay(day)}
             currentDay={day}
             fetchEvents={fetchEvents}
+            setNewEventData={setNewEventData}
+            toggleVisibleModal={toggleVisibleModal}
             onChangeEvent={onChangeEvent} />
         )}
       </div>
@@ -37,7 +41,9 @@ Week.propTypes = {
   events: PropTypes.array.isRequired, 
   currentWeek: PropTypes.number.isRequired, 
   fetchEvents: PropTypes.func.isRequired, 
-  onChangeEvent: PropTypes.func.isRequired
+  onChangeEvent: PropTypes.func.isRequired,
+  setNewEventData: PropTypes.func.isRequired,
+  toggleVisibleModal: PropTypes.func.isRequired,
 }
 
 export default Week

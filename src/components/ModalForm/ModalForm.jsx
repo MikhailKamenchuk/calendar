@@ -31,6 +31,9 @@ class ModalForm extends React.Component {
           && this.props.idOfTheEventToCahnge) {
       this.fetchEvent(this.props.idOfTheEventToCahnge);
     }
+    if(this.props.newEventData !== prevProps.newEventData){
+      this.setState({formData: this.props.newEventData})
+    }
   }
 
   componentWillUnmount() {
@@ -53,7 +56,7 @@ class ModalForm extends React.Component {
     })
   }
 
-  handleChangeEvent = () => {
+  handleUpdateEvent = () => {
     const {
       idOfTheEventToCahnge,
       reset,
@@ -70,10 +73,12 @@ class ModalForm extends React.Component {
 
   createEventHandler = e => {
     e.preventDefault();
+    const {fetchEvents, reset} = this.props;
+
     createEvent(destructureDataForServer(this.state.formData))
       .then(() => {
-        this.props.fetchEvents();
-        this.props.reset();
+        fetchEvents();
+        reset();
         this.setState({ formData: initialFormData })
       })
       .catch(error => alert(error))
@@ -138,7 +143,7 @@ class ModalForm extends React.Component {
               {this.props.targetModalForm === 'update'
                 ? <button
                   className="create-event__submit-btn"
-                  onClick={this.handleChangeEvent}>Update</button>
+                  onClick={this.handleUpdateEvent}>Update</button>
                 : <button className="create-event__submit-btn" type='submit'>Save</button>
               }
             </form>
@@ -155,6 +160,7 @@ ModalForm.propTypes = {
   fetchEvents: PropTypes.func.isRequired,
   idOfTheEventToCahnge: PropTypes.string,
   targetModalForm: PropTypes.string.isRequired,
+  newEventData: PropTypes.object.isRequired,
 }
 
 ModalForm.defaultProps = {

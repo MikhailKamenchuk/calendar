@@ -16,13 +16,23 @@ const Event = ({
   const from = moment(dateStart).format('HH:mm');
   const to = moment(dateEnd).format('HH:mm');
 
+  const handleCloseEvent = e => {
+    e.stopPropagation();
+    toggleVisibleTooltip(!visibleTooltip)
+  }
+
+  const handleChangeEvent = e => {
+    e.stopPropagation();
+    onChangeEvent(id)
+  }
+
   return (
     <div className="event" >
       <button
         className='event__close-btn close-btn'
-        onClick={() => toggleVisibleTooltip(!visibleTooltip)}
+        onClick={handleCloseEvent}
       >+</button>
-      <div className='event__content' onClick={() => onChangeEvent(id)}>
+      <div className='event__content' onClick={handleChangeEvent}>
         <div className="event__title">{title}</div>
         <div className="event__time">{`${from} - ${to}`}</div>
         <div className='event__description'>{description}</div>

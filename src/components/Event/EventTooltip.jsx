@@ -4,7 +4,8 @@ import { deleteEvent } from '../../services/gateway'
 
 const EvetTooltip = ({ id, fetchEvents, toggleVisibleTooltip }) => {
   useEffect(() => {
-    const deleteEventHandler = () => {
+    const deleteEventHandler = e => {
+      e.stopPropagation()
       deleteEvent(id)
         .then(() => fetchEvents())
         .catch(error => alert(error))

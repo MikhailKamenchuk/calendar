@@ -21,7 +21,7 @@ const Hour = ({
   });
 
   return (
-    <div className="calendar__hour">
+    <div className="calendar__hour" data-date={`${moment(currentDay).set({hour, 'minute': 0}).format()}`}>
       {eventData
         ? <Event
           eventData={eventData}
