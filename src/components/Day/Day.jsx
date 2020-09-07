@@ -8,23 +8,27 @@ const Day = ({
   currentDay,
   eventsInCurrentDay,
   fetchEvents,
-  onChangeEvent,
   setNewEventData,
   toggleVisibleModal
 }) => {
 
-  const getEventByTime = hour => eventsInCurrentDay.find(({ dateStart }) => {
-    return moment(dateStart).format("HH") == hour
+  const getEventByTime = hour => eventsInCurrentDay.find(({ timeStart }) => {
+    return timeStart.split(':')[0] == hour
   });
 
   const createEvent = e => {
-    const { date } = e.target.dataset
+    if(!e.target.classList.contains('calendar__hour')) {
+      return 
+    }  
+
+    const { date, timestart } = e.target.dataset
+    
     const dataInfForNewEvent = {
       title: '',
       description: '',
-      date: moment(date).format('YYYY-MM-DD'),
-      timeStart: moment(date).format('HH:mm'),
-      timeEnd: moment(date).add(1, 'hours').format('HH:mm'),
+      date,
+      timeStart: `${timestart}:00`,
+      timeEnd: `${timestart}:00` ,
     }
     setNewEventData(dataInfForNewEvent)
     toggleVisibleModal(true)
@@ -34,12 +38,11 @@ const Day = ({
     <div className="calendar__day" onClick={createEvent}>
       {[...Array(24).keys()].map(hour => (
         <Hour
-          key={hour}
-          hour={hour}
+          key={hour.toString().padStart(2, "0")}
+          hour={hour.toString().padStart(2, "0")}
           currentDay={currentDay}
-          eventData={getEventByTime(hour)}
+          eventData={getEventByTime(hour.toString().padStart(2, "0"))}
           fetchEvents={fetchEvents}
-          onChangeEvent={onChangeEvent}
         />
       ))}
     </div>
@@ -47,10 +50,9 @@ const Day = ({
 }
 
 Day.propTypes = {
-  currentDay: PropTypes.object.isRequired,
+  currentDay: PropTypes.string.isRequired,
   eventsInCurrentDay: PropTypes.array.isRequired,
   fetchEvents: PropTypes.func.isRequired,
-  onChangeEvent: PropTypes.func.isRequired,
   setNewEventData: PropTypes.func.isRequired,
   toggleVisibleModal: PropTypes.func.isRequired,
 }

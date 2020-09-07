@@ -1,42 +1,25 @@
-import React, {  useState } from 'react';
-import moment from 'moment';
-import PropTypes from 'prop-types'; 
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import EvetTooltip from './EventTooltip';
 import './event.scss';
 
 const Event = ({
   fetchEvents,
-  eventData,
-  onChangeEvent
+  eventData
 }) => {
   const [visibleTooltip, toggleVisibleTooltip] = useState(false);
 
-  const { id, title, description, dateStart, dateEnd } = eventData;
-
-  const from = moment(dateStart).format('HH:mm');
-  const to = moment(dateEnd).format('HH:mm');
-
-  const handleCloseEvent = e => {
-    e.stopPropagation();
-    toggleVisibleTooltip(!visibleTooltip)
-  }
-
-  const handleChangeEvent = e => {
-    e.stopPropagation();
-    onChangeEvent(id)
-  }
+  const { id, title, description, timeStart, timeEnd } = eventData;
 
   return (
     <div className="event" >
       <button
         className='event__close-btn close-btn'
-        onClick={handleCloseEvent}
+        onClick={() => toggleVisibleTooltip(!visibleTooltip)}
       >+</button>
-      <div className='event__content' onClick={handleChangeEvent}>
-        <div className="event__title">{title}</div>
-        <div className="event__time">{`${from} - ${to}`}</div>
-        <div className='event__description'>{description}</div>
-      </div>
+      <div className="event__title">{title}</div>
+      <div className="event__time">{`${timeStart} - ${timeEnd}`}</div>
+      <div className='event__description'>{description}</div>
       {visibleTooltip &&
         <EvetTooltip
           id={id}
@@ -50,7 +33,6 @@ const Event = ({
 Event.propTypes = {
   fetchEvents: PropTypes.func.isRequired,
   eventData: PropTypes.object.isRequired,
-  onChangeEvent: PropTypes.func.isRequired,
 }
 
 

@@ -8,8 +8,7 @@ const Hour = ({
   hour, 
   currentDay, 
   eventData, 
-  fetchEvents, 
-  onChangeEvent 
+  fetchEvents 
 }) => {
   const [minutes, setMinutes] = useState(moment().format('mm'))
 
@@ -20,28 +19,27 @@ const Hour = ({
     return () => clearInterval(intervalId);
   });
 
+  
+
   return (
-    <div className="calendar__hour" data-date={`${moment(currentDay).set({hour, 'minute': 0}).format()}`}>
+    <div className="calendar__hour" data-date={currentDay} data-timestart={hour}>
       {eventData
         ? <Event
           eventData={eventData}
-          fetchEvents={fetchEvents}
-          onChangeEvent={onChangeEvent}/>
+          fetchEvents={fetchEvents}/>
         : null}
-      {moment(currentDay).hour(hour).format('DD MM YYYY HH') === moment().format('DD MM YYYY HH')
-        ? <div className='calendar__hour__red-line' style={{ top: `${minutes}px` }}></div>
-        : null
+      {`${currentDay} ${hour}` === moment().format('YYYY-MM-DD HH')
+        && <div className='calendar__hour__red-line' style={{ top: `${minutes}px` }}></div>
       }
     </div>
   )
 }
 
 Hour.propTypes = {
-  hour: PropTypes.number.isRequired, 
-  currentDay: PropTypes.object.isRequired, 
+  hour: PropTypes.string.isRequired, 
+  currentDay: PropTypes.string.isRequired, 
   eventData: PropTypes.object, 
   fetchEvents: PropTypes.func.isRequired, 
-  onChangeEvent: PropTypes.func.isRequired,
 }
 
 export default Hour

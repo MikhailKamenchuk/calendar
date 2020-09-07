@@ -12,17 +12,17 @@ const CalendarWeekHeader = ({ currentWeek }) => {
   return (
     <header className="calendar__header ">
       {week.map((day, idx) => {
-        const dayLableClassNamemoment = moment(day).format('DD MM YYYY') === moment().format('DD MM YYYY')
+        const dayLableClassNamemoment = day === moment().format('YYYY-MM-DD')
         ? 'calendar__day-label today'
         : 'calendar__day-label';
 
         return (
           <div key={idx} className={dayLableClassNamemoment}>
             <span className="calendar__day-name">
-              {day.format("ddd")}
+              {moment(day, 'YYYY MM DD').format("ddd")}
             </span>
             <span className="calendar__day-number">
-              {day.format("DD")}
+              {moment(day, 'YYYY MM DD').format("DD")}
             </span>
           </div>
         )

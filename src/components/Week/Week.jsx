@@ -10,14 +10,12 @@ const Week = ({
   events, 
   currentWeek, 
   fetchEvents, 
-  onChangeEvent,
   setNewEventData,
   toggleVisibleModal
 }) => {
   const week = generateWeek(currentWeek);
 
-  const getEventsInCurrentDay = day => events.filter(({ dateStart }) =>
-    moment(dateStart).format('YYYY-MM-DD') === moment(day).format('YYYY-MM-DD'));
+  const getEventsInCurrentDay = day => events.filter(({ date }) => date === day);
 
   return (
     <div className="calendar__body">
@@ -30,8 +28,7 @@ const Week = ({
             currentDay={day}
             fetchEvents={fetchEvents}
             setNewEventData={setNewEventData}
-            toggleVisibleModal={toggleVisibleModal}
-            onChangeEvent={onChangeEvent} />
+            toggleVisibleModal={toggleVisibleModal}/>
         )}
       </div>
     </div>
@@ -41,7 +38,6 @@ Week.propTypes = {
   events: PropTypes.array.isRequired, 
   currentWeek: PropTypes.number.isRequired, 
   fetchEvents: PropTypes.func.isRequired, 
-  onChangeEvent: PropTypes.func.isRequired,
   setNewEventData: PropTypes.func.isRequired,
   toggleVisibleModal: PropTypes.func.isRequired,
 }
